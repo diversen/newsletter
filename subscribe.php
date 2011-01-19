@@ -1,7 +1,5 @@
 <?php
 
-
-
 template::setTitle(lang::translate('subscribe_message'));
 template::setTitle(lang::translate('subscribe_to_newsletter'));
 if (isset($_POST['submit'])){
@@ -9,7 +7,6 @@ if (isset($_POST['submit'])){
     if (empty(newsletter::$errors)){
         $res = newsletter::addSubscriber();
         if ($res){
-            //session::setActionMessage(lang::translate('subscribed_message'));
             echo lang::translate('subscribed_message');
             return;
         }
@@ -19,6 +16,4 @@ if (isset($_POST['submit'])){
 }
 
 newsletter::subscribeform();
-
-
 
