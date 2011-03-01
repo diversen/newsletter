@@ -15,3 +15,4 @@ $_INSTALL['MAIN_MENU_ITEM'] = array (
 );
 
 $_INSTALL['PUBLIC_CLONE_URL'] = 'git://github.com/diversen/newsletter.git';
+$_INSTALL['PRIVATE_CLONE_URL'] = 'git@github.com:diversen/newsletter.git';
