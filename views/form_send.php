@@ -4,7 +4,7 @@
 <input type="text" name="title" size="30" value="<?=@$_POST['title']?>" />
 <br />
 <label for="content"><?=lang::translate('content')?></label><br />
-<textarea name="content" cols="60" rows="20" ><?=@$_POST['content']?></textarea>
+<textarea name="content" cols="40" rows="20" ><?=@$_POST['content']?></textarea>
 <label for="submit">&nbsp;</label>
 <br />
 <label for="test_email"><?=lang::translate('test_email');?></label><br />
