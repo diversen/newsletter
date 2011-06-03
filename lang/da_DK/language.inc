@@ -3,11 +3,11 @@
 $_COS_LANG_MODULE = array();
 $_COS_LANG_MODULE['Newsletter'] = 'Nyhedsbrev';
 $_COS_LANG_MODULE['email_exists'] = 'Email eksisterer';
-$_COS_LANG_MODULE['subscribe_to_newsletter'] = 'Tilmeld dig nyhedsbrev';
+$_COS_LANG_MODULE['subscribe_to_newsletter'] = 'Tilmeld';
 $_COS_LANG_MODULE['subscribe'] = 'Tilmeld dig';
 $_COS_LANG_MODULE['verify_subscribed'] = 'Du er nu tilmeldt nyhedsbrevet';
 $_COS_LANG_MODULE['email_already_subscribed'] = 'Din mail er allerede tilmeldt nyhedsbrevet';
-$_COS_LANG_MODULE['unsubscribe'] = 'Afmeld dig nyhedsbrev';
+$_COS_LANG_MODULE['unsubscribe'] = 'Afmeld';
 $_COS_LANG_MODULE['error_email'] = 'Indtast en korrekt email adresse';
 $_COS_LANG_MODULE['subscribed_message'] = 'Der er afsendt en bekræftelses email. Når du har svaret på denne er du tilmeldt nyhedsbrevet';
 $_COS_LANG_MODULE['unsubscribed_message'] = 'Der er afsendt en bekræftelses email. Når du har svaret på denne er du afmeldt nyhedsbrevet';
