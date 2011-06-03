@@ -322,8 +322,26 @@ public static function unsubscribeform (){
         $db = new db();
         $rows = $db->selectAll('newsletter_archive');
         //print_r($rows);
+        $newsletter = array();
         foreach ($rows as $key => $val){
-            print_r(unserialize($val['report']));
+            $unix_stamp = strtotime($val['sent_stamp']);
+            $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
+            $str.= ' ' . $val['title'];
+            echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
+            echo "<br />\n";
+            if (session::isAdmin()){
+                echo html::createLink("/newsletter/archive/$val[id]/delete", lang::translate('newsletter_delete_archive_item'));
+                echo "<br />\n";
+            }
+            echo "<hr />\n";
+            if (isset($_GET['id'])) {
+                if ($val['id'] == $_GET['id']){
+                    $newsletter = $val;
+                }
+            }
+        }
+        if (!empty($newsletter)){
+            echo $newsletter['content'];
         }
     }
 
