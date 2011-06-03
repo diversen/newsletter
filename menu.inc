@@ -11,7 +11,7 @@ $_MODULE_MENU[] = array (
 );
 
 $_MODULE_MENU[] = array (
-    'title' => lang::translate('newsletter_artchive'),
+    'title' => lang::translate('newsletter_archive'),
     'url' => '/newsletter/archive',
 );
 
