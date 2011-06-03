@@ -1,4 +1,4 @@
-reply_to = yourmail@somewhere.org
-allow_send_news = admin
+newsletter_reply_to = yourmail@somewhere.org
+newsletter_allow_send_news = admin
 [development]
-reply_to = reply_to@development.org
+newsletter_reply_to = reply_to@development.org

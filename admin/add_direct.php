@@ -13,7 +13,7 @@ if (!session::checkAccessControl('newsletter_allow_send_news')){
 }
 
 $newsletter = new newsletter();
-$newsletter->validateSend();
+$newsletter->validateAddDirect();
 
 view_confirm(lang::translate('admin_newsletter_note'));
 
@@ -37,4 +37,4 @@ if ( isset($_POST['submit']) && @!empty($_POST['test_email'])){
     }
 }
 
-include _COS_PATH . "/modules/newsletter/views/form_send.php";
+include _COS_PATH . "/modules/newsletter/views/add_direct.inc";

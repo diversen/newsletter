@@ -2,7 +2,7 @@
 
 include_module ("newsletter");
 
-if (!session::checkAccessControl('allow_send_news')){
+if (!session::checkAccessControl('newsletter_allow_send_news')){
     return;
 }
 

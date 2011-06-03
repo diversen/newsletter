@@ -1,7 +1,5 @@
 <?php
 
-
-
 $_SUB_MODULE_MENU[] = array (
     'title' => lang::translate('send_newsletter'),
     'url' => '/newsletter/admin/send',
@@ -11,6 +9,12 @@ $_SUB_MODULE_MENU[] = array (
 $_SUB_MODULE_MENU[] = array (
     'title' => lang::translate('validate_all_emails'),
     'url' => '/newsletter/admin/validate_all',
+    'auth' => 'admin'
+);
+
+$_SUB_MODULE_MENU[] = array (
+    'title' => lang::translate('newsletter_add_direct_email'),
+    'url' => '/newsletter/admin/add_direct',
     'auth' => 'admin'
 );
 
