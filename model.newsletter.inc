@@ -242,6 +242,16 @@ public static function unsubscribeform (){
         }
     }
 
+    public function getReport($id){
+        $db = new db();
+        return $db->selectOne('newsletter_archive', 'id', $id);
+    }
+
+    public function deleteReport($id){
+        $db = new db();
+        return $db->delete('newsletter_archive', 'id', $id);
+    }
+
     public static function validateSend (){
         if (isset($_POST['submit'])){
             if (empty($_POST['title']))
@@ -321,8 +331,9 @@ public static function unsubscribeform (){
     public static function viewReports (){
         $db = new db();
         $rows = $db->selectAll('newsletter_archive');
-        //print_r($rows);
+
         $newsletter = array();
+        echo "<h3 id=\"top\">" . lang::translate('newsletter_archive') . "</h3>\n";
         foreach ($rows as $key => $val){
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
@@ -330,18 +341,36 @@ public static function unsubscribeform (){
             echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
             echo "<br />\n";
             if (session::isAdmin()){
-                echo html::createLink("/newsletter/archive/$val[id]/delete", lang::translate('newsletter_delete_archive_item'));
+                echo html::createLink("/newsletter/delete/$val[id]", lang::translate('newsletter_delete_archive_item'));
                 echo "<br />\n";
             }
             echo "<hr />\n";
             if (isset($_GET['id'])) {
+                
                 if ($val['id'] == $_GET['id']){
                     $newsletter = $val;
                 }
             }
         }
         if (!empty($newsletter)){
-            echo $newsletter['content'];
+            //include_module("filter_simple");
+            include_filters("simple");
+            //include_filters($filter);
+            $content = filterSimple::filter($newsletter['content']);
+            echo "<h3 id=\"start\">$newsletter[title]</h3>";
+            echo "<a href=\"/newsletter/archive#top\">" . lang::translate('newsletter_to_top') . "</a><br /><br />\n";
+            echo $content;
+
+            $title = lang::translate('newsletter_archive_html_title_item');
+            $title.= MENU_SUB_SEPARATOR_SEC . html::specialEncode($newsletter['title']);
+
+            template::setTitle($title);
+            print_r(array('test' => 'æøå'));
+             //echo $newsletter['content'];
+            template::setMeta(array('description' => substr2($newsletter['content'], 155, 3)));
+        } else {
+            template::setTitle(lang::translate('newsletter_archive_html_title'));
+            template::setMeta(array('description' => lang::translate('newsletter_archive_index_meta')));
         }
     }
 

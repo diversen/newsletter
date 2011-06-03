@@ -43,3 +43,20 @@ $_COS_LANG_MODULE['validate_all'] = 'Valider alle emails!';
 $_COS_LANG_MODULE['delete_broken_emails'] = 'Slet ovenstående emails';
 $_COS_LANG_MODULE['broken_emails_deleted'] = 'Fejlagtige emails er blevet slettet';
 
+$_COS_LANG_MODULE['newsletter_add_direct'] = 'Tilføj direkte';
+$_COS_LANG_MODULE['newsletter_form_email'] = 'Email';
+$_COS_LANG_MODULE['newsletter_delete_label'] = 'Slet nyhedsbrev';
+$_COS_LANG_MODULE['newsletter_delete_button'] = 'Slet';
+$_COS_LANG_MODULE['newsletter_delete_action_message'] = 'Nyhedsbrev blev slettet!';
+$_COS_LANG_MODULE['subscribe_message'] = 'subscribe_message';
+$_COS_LANG_MODULE['error_try_later'] = 'Der opstod en fejl. Prøv senere';
+$_COS_LANG_MODULE['newsletter_archive'] = 'Arkiv';
+$_COS_LANG_MODULE['newsletter_delete_archive_item'] = 'Slet';
+
+$_COS_LANG_MODULE['newsletter_content'] = 'Indhold';
+
+$_COS_LANG_MODULE['newsletter_to_top'] = 'Til Oversigt';
+
+$_COS_LANG_MODULE['newsletter_archive_html_title_item'] = 'Arkiv Nyhedsbrev';
+$_COS_LANG_MODULE['newsletter_archive_html_title'] = 'Oversigt over nyhedsbreve ';
+$_COS_LANG_MODULE['newsletter_archive_index_meta'] = 'Oversigt over afsendte nyhedsbreve';

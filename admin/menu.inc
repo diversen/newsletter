@@ -12,11 +12,6 @@ $_SUB_MODULE_MENU[] = array (
     'auth' => 'admin'
 );
 
-$_SUB_MODULE_MENU[] = array (
-    'title' => lang::translate('newsletter_add_direct_email'),
-    'url' => '/newsletter/admin/add_direct',
-    'auth' => 'admin'
-);
 
 
 
