@@ -338,6 +338,7 @@ public static function unsubscribeform (){
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
             $str.= ' ' . $val['title'];
+            $str = html::entitiesEncode($str);
             echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
             echo "<br />\n";
             if (session::isAdmin()){
@@ -357,7 +358,7 @@ public static function unsubscribeform (){
             include_filters("simple");
             //include_filters($filter);
             $content = filterSimple::filter($newsletter['content']);
-            echo "<h3 id=\"start\">$newsletter[title]</h3>";
+            echo "<h3 id=\"start\">" . html::specialEncode($newsletter['title']) . "</h3>";
             echo "<a href=\"/newsletter/archive#top\">" . lang::translate('newsletter_to_top') . "</a><br /><br />\n";
             echo $content;
 
@@ -366,7 +367,7 @@ public static function unsubscribeform (){
 
             template::setTitle($title);
              //echo $newsletter['content'];
-            template::setMeta(array('description' => substr2($newsletter['content'], 155, 3)));
+            template::setMeta(array('description' => substr2(html::specialEncode($newsletter['content']), 155, 3)));
         } else {
             template::setTitle(lang::translate('newsletter_archive_html_title'));
             template::setMeta(array('description' => lang::translate('newsletter_archive_index_meta')));
