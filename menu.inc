@@ -10,6 +10,11 @@ $_MODULE_MENU[] = array (
     'url' => '/newsletter/unsubscribe',
 );
 
+$_MODULE_MENU[] = array (
+    'title' => lang::translate('newsletter_artchive'),
+    'url' => '/newsletter/archive',
+);
+
 
 $_MODULE_MENU[] = array (
     'title' => lang::translate('Admin'),
