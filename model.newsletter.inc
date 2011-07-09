@@ -354,10 +354,9 @@ public static function unsubscribeform (){
             }
         }
         if (!empty($newsletter)){
-            //include_module("filter_simple");
-            include_filters("simple");
-            //include_filters($filter);
-            $content = filterSimple::filter($newsletter['content']);
+
+            $filters = get_module_ini('newsletter_filters');
+            $content =get_filtered_content($filters, $newsletter['content']);
             echo "<h3 id=\"start\">" . html::specialEncode($newsletter['title']) . "</h3>";
             echo "<a href=\"/newsletter/archive#top\">" . lang::translate('newsletter_to_top') . "</a><br /><br />\n";
             echo $content;
