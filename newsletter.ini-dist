@@ -1,6 +1,3 @@
-newsletter_reply_to = "dennisbech@yahoo.dk"
 newsletter_allow_send_news = "admin"
 newsletter_filters[0] = "autolink"
 newsletter_filters[1] = "markdownExt"
-[development]
-newsletter_reply_to = reply_to@development.org

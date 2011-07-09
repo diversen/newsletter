@@ -174,7 +174,7 @@ public static function unsubscribeform (){
         $from = get_main_ini('site_email');
         
         // reply-to
-        $reply_to = get_module_ini('newsletter_reply_to');
+        $reply_to = get_main_ini('site_email');
         
         // language
         $language = get_main_ini('language');
@@ -221,7 +221,7 @@ public static function unsubscribeform (){
         $from = get_main_ini('site_email');
 
         // reply-to
-        $reply_to = get_module_ini('newsletter_reply_to');
+        $reply_to = get_main_ini('site_email');
 
         // language
         $language = get_main_ini('language');
@@ -297,7 +297,7 @@ public static function unsubscribeform (){
         $from = get_main_ini('site_email');
 
         // reply-to
-        $reply_to = get_module_ini('newsletter_reply_to');
+        $reply_to = get_main_ini('site_email');
         
         // only a test
         if (!empty($_POST['test_email'])){
