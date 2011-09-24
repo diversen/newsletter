@@ -333,7 +333,7 @@ public static function unsubscribeform (){
         $rows = $db->selectAll('newsletter_archive');
 
         $newsletter = array();
-        echo "<h3 id=\"top\">" . lang::translate('newsletter_archive') . "</h3>\n";
+        headline_message(lang::translate('newsletter_archive'));
         foreach ($rows as $key => $val){
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
