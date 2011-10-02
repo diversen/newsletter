@@ -37,4 +37,4 @@ if ( isset($_POST['submit']) && @!empty($_POST['test_email'])){
     }
 }
 
-include _COS_PATH . "/modules/newsletter/views/form_send.php";
+include _COS_PATH . "/modules/newsletter/views/form_send.inc";

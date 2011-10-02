@@ -5,7 +5,11 @@
 $db = new db();
 $db->connect();
 
-$file_content = file_get_contents(_COS_PATH . "/modules/newsletter/emails.txt");
+$file_content = @file_get_contents(_COS_PATH . "/modules/newsletter/emails.txt");
+if (empty($file_content)) {
+    die('No emails.txt for import');
+}
+
 
 $ary = explode ("\n\n", $file_content);
 //print_r($ary);
