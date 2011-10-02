@@ -180,7 +180,7 @@ public static function unsubscribeform (){
         $language = get_main_ini('language');
 
         ob_start();
-        $email_file = _COS_PATH . '/modules/newsletter/lang/' . $language . '/subscribe_email.php';
+        $email_file = _COS_PATH . '/modules/newsletter/lang/' . $language . '/subscribe_email.inc';
         include $email_file;
         $message = ob_get_contents();
         ob_end_clean();
@@ -227,7 +227,7 @@ public static function unsubscribeform (){
         $language = get_main_ini('language');
 
         ob_start();
-        $email_file = _COS_PATH . '/modules/newsletter/lang/' . $language . '/unsubscribe_email.php';
+        $email_file = _COS_PATH . '/modules/newsletter/lang/' . $language . '/unsubscribe_email.inc';
         include $email_file;
         $message = ob_get_contents();
         ob_end_clean();
