@@ -75,3 +75,16 @@ $_COS_LANG_MODULE['validate_all_emails'] = 'Validate all emails';
 $_COS_LANG_MODULE['email_already_unsubscribed'] = 'Email is already unsubscribed!';
 
 
+
+$_COS_LANG_MODULE['newsletter_archive'] = 'Archive';
+$_COS_LANG_MODULE['newsletter_delete_archive_item'] = 'Delete';
+$_COS_LANG_MODULE['newsletter_to_top'] = 'Archive Overview';
+$_COS_LANG_MODULE['newsletter_archive_html_title_item'] = 'Newsletter Archive';
+$_COS_LANG_MODULE['newsletter_archive_html_title'] = 'Newsletter Archive';
+$_COS_LANG_MODULE['newsletter_archive_index_meta'] = 'Meta Index';
+$_COS_LANG_MODULE['newsletter_add_direct'] = 'newsletter_add_direct';
+$_COS_LANG_MODULE['newsletter_form_email'] = 'newsletter_form_email';
+$_COS_LANG_MODULE['newsletter_content'] = 'Newsletter Content';
+$_COS_LANG_MODULE['newsletter_delete_label'] = 'Delete Newsletter';
+$_COS_LANG_MODULE['newsletter_delete_button'] = 'Delete';
+$_COS_LANG_MODULE['newsletter_delete_action_message'] = 'Newsletter has been deleted';
