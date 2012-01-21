@@ -355,7 +355,7 @@ public static function unsubscribeform (){
         }
         if (!empty($newsletter)){
 
-            $filters = get_module_ini('newsletter_filters');
+            $filters = config::getModuleIni('newsletter_filters');
             $content =get_filtered_content($filters, $newsletter['content']);
             echo "<h3 id=\"start\">" . html::specialEncode($newsletter['title']) . "</h3>";
             echo "<a href=\"/newsletter/archive#top\">" . lang::translate('newsletter_to_top') . "</a><br /><br />\n";
