@@ -365,8 +365,7 @@ public static function unsubscribeform (){
             $title.= MENU_SUB_SEPARATOR_SEC . html::specialEncode($newsletter['title']);
 
             template::setTitle($title);
-             //echo $newsletter['content'];
-            template::setMeta(array('description' => substr2(html::specialEncode($newsletter['content']), 155, 3)));
+            template::setMeta(array('description' => strings::substr2(html::specialEncode($newsletter['content']), 155, 3)));
         } else {
             template::setTitle(lang::translate('newsletter_archive_html_title'));
             template::setMeta(array('description' => lang::translate('newsletter_archive_index_meta')));
