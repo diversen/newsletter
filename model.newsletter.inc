@@ -70,6 +70,8 @@ public static function unsubscribeform (){
         }
 
     }
+    
+    
 
     public function verifySubscriber (){
         $id = uri::$fragments[2];
@@ -93,6 +95,8 @@ public static function unsubscribeform (){
 
             $res = $this->update('newsletter', $values, $id);
             //$this->update($table, $values, $search, $bind);
+
+            
             if ($res){
                 db::$dbh->commit();
                 echo lang::translate('verify_subscribed');
@@ -140,13 +144,60 @@ public static function unsubscribeform (){
             }
         }
 
-        $search = array (
-            'id' => $id,
-        );
+        $search = array ('id' => $id);
+        
         $row = $this->selectOne('newsletter', null, $search);
         if (empty($row)){
             echo lang::translate('email_already_unsubscribed');
             return 0;
+        }
+    }
+    
+    public static function addDirect($email) {
+        $db = new db();
+        $values = array ();
+        $values['email'] = $email;
+        $validate_key = md5(uniqid(rand(), true));
+        $values['validate_key'] = $validate_key;
+        $values['subscribed'] = 0;
+        return $db->insert('newsletter', $values);
+    }
+    
+    public static function updateDirect($row) {
+        $db = new db();
+        
+        $values = array ('subscribed' => 1);
+        return $db->update('newsletter', $values, array ('email' => $row['email']));
+        /*
+        $values = array ();
+        $values['email'] = $email;
+        $validate_key = md5(uniqid(rand(), true));
+        $values['validate_key'] = $validate_key;
+        $values['subscribed'] = 1;
+        return $db->insert('newsletter', $values);
+         * 
+         */
+    }
+    
+    public static function events ($params) {
+        // should sanitize in above functions.
+        if ($params['action'] == 'insert') {
+            if (isset($_POST['newsletter'])) {
+                $res = self::addDirect ( $params['email'] );
+                return $res;
+            }
+            
+        }
+        
+        if ($params['action'] == 'update') {
+            //die('doing');
+            $res = self::updateDirect ( $params );
+            return $res;
+        }
+        
+        if ($params['action'] == 'form') {
+            html::label('newsletter', lang::translate('newsletter_form_event_title'));
+            html::checkbox('newsletter', 1);
         }
     }
 
