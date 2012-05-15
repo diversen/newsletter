@@ -196,9 +196,11 @@ public static function unsubscribeform (){
         }
         
         if ($params['action'] == 'form') {
+            //die('flaf');
             html::label('newsletter', lang::translate('newsletter_form_event_title'));
             html::checkbox('newsletter', 1);
         }
+        return true;
     }
 
     public static function addSubscriber (){
