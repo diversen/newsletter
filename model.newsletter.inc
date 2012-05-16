@@ -190,7 +190,7 @@ class newsletter {
     public static function events ($params) {
         
         $news = new newsletter();
-        if ($params['action'] == 'profile_update') {
+        if ($params['action'] == 'profile_update' || $params['action'] == 'profile_create') {
             $res = $news->updateEvent ( $params );
             unset($_POST['newsletter']);
             return $res;        
