@@ -1,4 +1,4 @@
 <?php
 
 $news = new newsletter();
-$news->viewReports();
+$news->displayAllNewsletters();

@@ -6,7 +6,7 @@ if (!session::checkAccessControl('newsletter_allow_send_news')){
 
 $news = new newsletter();
 $id = uri::$fragments[2];
-$row = $news->getReport($id);
+$row = $news->getNewsletter($id);
 
 if (!isset($id) || !isset($row)){
     header ("Location: /newsletter/archive");
@@ -22,7 +22,7 @@ html::formEnd();
 echo html::$formStr;
 
 if (isset($_POST['submit'])) {
-    $news->deleteReport($id);
+    $news->deleteNewsletter($id);
     session::setActionMessage(lang::translate('newsletter_delete_action_message'));
     header("Location: /newsletter/archive");
     die();

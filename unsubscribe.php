@@ -1,13 +1,12 @@
 <?php
 
-template::setTitle(lang::translate('unsubscribe_to_newsletter'));
+template::setTitle(lang::translate('newsletter_unsubscribe_to_newsletter'));
 if (isset($_POST['submit'])){
     newsletter::validate('unsubscribe');
     if (empty(newsletter::$errors)){
         $res = newsletter::deleteSubscriber();
         if ($res){
-            //session::setActionMessage(lang::translate('subscribed_message'));
-            echo lang::translate('unsubscribed_message');
+            echo lang::translate('newsletter_unsubscribed_message');
             return;
         }
     } else {

@@ -7,7 +7,7 @@ if (!session::checkAccessControl('newsletter_allow_send_news')){
 }
 
 if (!isset($_POST['submit']) && !isset($_POST['delete'])){
-    newsletter::validateAlllEmailsForm();
+    newsletter::displayValidateAllEmails();
 }
 if (isset($_POST['submit'])){
     newsletter::validateAllEmails();
@@ -15,5 +15,5 @@ if (isset($_POST['submit'])){
 
 if (isset($_POST['delete'])){
     newsletter::deleteBrokenEmails();
-    session::setActionMessage(lang::translate('broken_emails_deleted'));
+    session::setActionMessage(lang::translate('newsletter_broken_emails_deleted'));
 }
