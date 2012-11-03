@@ -1,5 +1,7 @@
 <?php
 
+include_once "coslib/captcha.php";
+
 class newsletter {
 
     /**
@@ -39,6 +41,13 @@ class newsletter {
     public static function validate ($action = 'subscribe'){
         $db = new db();
         $row = $db->selectOne('newsletter', 'email', $_POST['email']);
+        
+        if (config::getModuleIni('newsletter_captcha')) {
+            if (!session::isUser() && !captcha::checkCaptcha($_POST['captcha'])) {
+                self::$errors['captcha'] = lang::translate('system_captcha_error');
+            }
+        }
+        
         if ($action == 'subscribe'){
             if (!empty($row)){
                 self::$errors['email_exists'] = lang::translate('newsletter_email_exists');
@@ -54,6 +63,8 @@ class newsletter {
                 self::$row = $row;
             }
         }
+        
+        
 
         if (!cosValidate::email($_POST['email'])){
             self::$errors['email'] = lang::translate('newsletter_error_email');
@@ -64,6 +75,8 @@ class newsletter {
             self::$errors['email'] = lang::translate('newsletter_error_email');
             return;
         }
+        
+        
     }
 
     /**
@@ -480,8 +493,13 @@ class newsletter {
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
             $str.= ' ' . $val['title'];
-            $str = html::entitiesEncode($str);
-            echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
+            $str = html::specialEncode($str);
+            
+            $url = strings::utf8Slug("/newsletter/archive/$val[id]", $val['title']);
+            echo html::createLink($url, $str);
+            //echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
+            
+            
             echo "<br />\n";
             if (session::isAdmin()){
                 echo html::createLink("/newsletter/delete/$val[id]", lang::translate('newsletter_delete_archive_item'));
