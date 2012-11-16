@@ -1,6 +1,7 @@
 <?php
 
 include_once "coslib/captcha.php";
+include_once "coslib/pearPager.php";
 
 class newsletter {
 
@@ -484,54 +485,32 @@ class newsletter {
      *displays all sent newsletters 
      */
     public static function displayAllNewsletters (){
-        $db = new db();
-        $rows = $db->selectAll('newsletter_archive');
 
-        $newsletter = array();
-        headline_message(lang::translate('newsletter_archive'));
+        $num_rows = dbQ::setSelectNumRows('newsletter_archive')->fetch();
+        $limit = 10;
+        $p = new pearPager($num_rows, $limit);
         
-        $current_id = uri::getInstance()->fragment(2);
-        foreach ($rows as $key => $val){
+        $rows = dbQ::setSelect('newsletter_archive')->order('sent_stamp', 'DESC')->limit($p->from, $limit)->fetch();
+
+        headline_message(lang::translate('newsletter_archive'));
+        foreach ($rows as $val){
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
             $str.= ' ' . $val['title'];
             $str = html::specialEncode($str);
             
-            $url = strings::utf8Slug("/newsletter/archive/$val[id]", $val['title']);
+            $url = strings::utf8Slug("/newsletter/view/$val[id]", $val['title']);
             echo html::createLink($url, $str);
-            //echo html::createLink("/newsletter/archive?id=$val[id]#start", $str);
-            
-            
             echo "<br />\n";
             if (session::isAdmin()){
                 echo html::createLink("/newsletter/delete/$val[id]", lang::translate('newsletter_delete_archive_item'));
                 echo "<br />\n";
             }
             echo "<hr />\n";
-            if (isset($current_id)) {
-                
-                if ($val['id'] == $current_id){
-                    $newsletter = $val;
-                }
-            }
+            
         }
-        if (!empty($newsletter)){
+        echo $p->getPagerHTML();
 
-            $filters = config::getModuleIni('newsletter_filters');
-            $content =get_filtered_content($filters, $newsletter['content']);
-            echo "<h3 id=\"start\">" . html::specialEncode($newsletter['title']) . "</h3>";
-            echo "<a href=\"/newsletter/archive#top\">" . lang::translate('newsletter_to_top') . "</a><br /><br />\n";
-            echo $content;
-
-            $title = lang::translate('newsletter_archive_html_title_item');
-            $title.= MENU_SUB_SEPARATOR_SEC . html::specialEncode($newsletter['title']);
-
-            template::setTitle($title);
-            template::setMeta(array('description' => strings::substr2(html::specialEncode($newsletter['content']), 155, 3)));
-        } else {
-            template::setTitle(lang::translate('newsletter_archive_html_title'));
-            template::setMeta(array('description' => lang::translate('newsletter_archive_index_meta')));
-        }
     }
 
     /**
