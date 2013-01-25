@@ -328,7 +328,7 @@ class newsletter {
         $message = ob_get_contents();
         ob_end_clean();
 
-        if (mail_utf8($_POST['email'], $subject, $message, $from, $reply_to)){
+        if (cosMail::text($_POST['email'], $subject, $message, $from, $reply_to)){
             db::$dbh->commit();
             return 1;
         } else {
@@ -369,7 +369,7 @@ class newsletter {
         $message = ob_get_contents();
         ob_end_clean();
 
-        if (mail_utf8($_POST['email'], $subject, $message, $from, $reply_to)){
+        if (cosMail::text($_POST['email'], $subject, $message, $from, $reply_to)){
             db::$dbh->commit();
             return 1;
         } else {
@@ -449,7 +449,7 @@ class newsletter {
         
         // only a test
         if (!empty($_POST['test_email'])){
-            $res['test_email'] = mail_utf8(
+            $res['test_email'] = cosMail::text(
                         $_POST['test_email'],
                         $_POST['title'],
                         $_POST['content'],
@@ -457,7 +457,7 @@ class newsletter {
         } else {
             // send newesletter
             foreach ($rows as $key => $val){
-                $res[$val['email']] = mail_utf8(
+                $res[$val['email']] = cosMail::text(
                         $val['email'],
                         $_POST['title'],
                         $_POST['content'],
