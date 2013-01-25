@@ -21,14 +21,14 @@ class newsletter {
      * displays a subscribe form 
      */
     public static function subscribeform (){
-        echo templateView::get('newsletter', 'subscribe_form');
+        echo view::get('newsletter', 'subscribe_form');
     }
 
     /**
      *displays a unsubscribe form 
      */
     public static function unsubscribeform (){
-        echo templateView::get('newsletter', 'unsubscribe_form');
+        echo view::get('newsletter', 'unsubscribe_form');
     }
 
     /**
