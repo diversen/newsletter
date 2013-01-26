@@ -1,6 +1,6 @@
 <?php
 
-include_module ("newsletter");
+moduleloader::includeModule ("newsletter");
 
 if (!session::checkAccessControl('newsletter_allow_send_news')){
     return;

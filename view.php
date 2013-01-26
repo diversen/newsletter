@@ -14,7 +14,7 @@ http::permMovedHeader($url);
 if (!empty($row)){
 
     $filters = config::getModuleIni('newsletter_filters');
-    $content =get_filtered_content($filters, $row['content']);
+    $content =moduleloader::getFilteredContent($filters, $row['content']);
     echo "<h3 id=\"start\">" . html::specialEncode($row['title']) . "</h3>";
     echo $content;
     $title = lang::translate('newsletter_archive_html_title_item');

@@ -313,9 +313,9 @@ class newsletter {
         $site_name = 'http://' . $site;
         $subscribe_url = $site_name . "/newsletter/verify/$id/$validate_key";
 
-        $from = get_main_ini('site_email');
-        $reply_to = get_main_ini('site_email');
-        $language = get_main_ini('language');
+        $from = config::getMainIni('site_email');
+        $reply_to = config::getMainIni('site_email');
+        $language = config::getMainIni('language');
 
         ob_start();
         
@@ -359,9 +359,9 @@ class newsletter {
         $site_name = 'http://' . $site;
         $unsubscribe_url = $site_name . "/newsletter/verify_unsubscribe/$id/$validate_key";
 
-        $from = get_main_ini('site_email');
-        $reply_to = get_main_ini('site_email');
-        $language = get_main_ini('language');
+        $from = config::getMainIni('site_email');
+        $reply_to = config::getMainIni('site_email');
+        $language = config::getMainIni('language');
 
         ob_start();
         $email_file = _COS_PATH . '/modules/newsletter/lang/' . $language . '/unsubscribe_email.inc';
@@ -444,8 +444,8 @@ class newsletter {
 
         // create results ary for status report
         $res = array ();
-        $from = get_main_ini('site_email');
-        $reply_to = get_main_ini('site_email');
+        $from = config::getMainIni('site_email');
+        $reply_to = config::getMainIni('site_email');
         
         // only a test
         if (!empty($_POST['test_email'])){
@@ -495,7 +495,7 @@ class newsletter {
         headline_message(lang::translate('newsletter_archive'));
         foreach ($rows as $val){
             $unix_stamp = strtotime($val['sent_stamp']);
-            $str = strftime(get_main_ini('date_format_long'), $unix_stamp);
+            $str = strftime(config::getMainIni('date_format_long'), $unix_stamp);
             $str.= ' ' . $val['title'];
             $str = html::specialEncode($str);
             
