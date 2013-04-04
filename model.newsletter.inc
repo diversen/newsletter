@@ -226,8 +226,11 @@ class newsletter {
      */
     public function formEvent ($params) {
         
-        $user = user::getAccount($params['user_id']);
-        $row = $this->getSubscriber($user['email']);
+        $row = array ();
+        if (!empty($params['user_id'])) {
+            $user = user::getAccount($params['user_id']);
+            $row = $this->getSubscriber($user['email']);
+        }
         if (!empty($row)) {
             $checked = 1;
         } else {
@@ -492,7 +495,7 @@ class newsletter {
         
         $rows = dbQ::setSelect('newsletter_archive')->order('sent_stamp', 'DESC')->limit($p->from, $limit)->fetch();
 
-        headline_message(lang::translate('newsletter_archive'));
+        html::headline(lang::translate('newsletter_archive'));
         foreach ($rows as $val){
             $unix_stamp = strtotime($val['sent_stamp']);
             $str = strftime(config::getMainIni('date_format_long'), $unix_stamp);
