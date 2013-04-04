@@ -15,7 +15,7 @@ if (!session::checkAccessControl('newsletter_allow_send_news')){
 $newsletter = new newsletter();
 $newsletter->validateSend();
 
-view_confirm(lang::translate('newsletter_admin_newsletter_note'));
+html::confirm(lang::translate('newsletter_admin_newsletter_note'));
 
 if ( isset($_POST['submit']) && @empty($_POST['test_email'])){
     if (empty(newsletter::$errors)){

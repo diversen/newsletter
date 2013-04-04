@@ -550,7 +550,7 @@ class newsletter {
      * displays a form for validating all newsletters 
      */
     public static function displayValidateAllEmails (){
-        view_confirm(lang::translate('newsletter_validate_all_message'));
+        html::confirm(lang::translate('newsletter_validate_all_message'));
         echo "<form method =\"post\" action= \"\">\n";
         echo "<input type = \"submit\" name=\"submit\" value =\"" .lang::translate('newsletter_validate_all') . "\" />";
         echo "</form>\n";
